@@ -3,14 +3,17 @@
 
 // Utility: format milliseconds to HH:MM:SS
 function formatMS(ms){
-  const totalSeconds = Math.floor(ms/1000);
-  const h = Math.floor(totalSeconds/3600);
-  const m = Math.floor((totalSeconds%3600)/60);
-  const s = totalSeconds%60;
-  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const m = Math.floor(ms / 60000);               
+  const s = Math.floor((ms % 60000) / 1000);      
+  const msPart = ms % 1000;                       
+
+  return (
+    String(m).padStart(2, '0') + ":" +
+    String(s).padStart(2, '0') + ":" +
+    String(msPart).padStart(3, '0')
+  );
 }
 
-// Elements (may be absent on viewer page)
 const timerDisplay = document.getElementById('timerDisplay');
 const driverListEl = document.getElementById('driverList');
 const dbStateEl = document.getElementById('dbState');
