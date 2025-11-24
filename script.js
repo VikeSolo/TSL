@@ -34,7 +34,7 @@ timerRef.on('value', snapshot => {
       const now = Date.now();
       const diff = (data.elapsed || 0) + (now - (data.startTime || now));
       if(timerDisplay) timerDisplay.innerText = formatMS(diff);
-    }, 100);
+    }, 1);
   } else {
     if(localInterval){ clearInterval(localInterval); localInterval = null; }
     if(timerDisplay) timerDisplay.innerText = formatMS(data.elapsed || 0);
