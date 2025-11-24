@@ -5,12 +5,12 @@
 function formatMS(ms){
   const m = Math.floor(ms / 60000);               
   const s = Math.floor((ms % 60000) / 1000);      
-  const msPart = ms % 100;                       
+  const msPart = ms % 10;                       
 
   return (
     String(m).padStart(2, '0') + ":" +
     String(s).padStart(2, '0') + ":" +
-    String(msPart).padStart(3, '0')
+    String(msPart).padStart(2, '0')
   );
 }
 
