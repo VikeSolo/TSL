@@ -5,7 +5,7 @@
 function formatMS(ms){
   const m = Math.floor(ms / 60000);               
   const s = Math.floor((ms % 60000) / 1000);      
-  const msPart = ms % 1000;                       
+  const msPart = ms % 100;                       
 
   return (
     String(m).padStart(2, '0') + ":" +
