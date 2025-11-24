@@ -10,7 +10,7 @@ function formatMS(ms){
   return (
     String(m).padStart(2, '0') + ":" +
     String(s).padStart(2, '0') + ":" +
-    String(msPart).padStart(2, '0')
+    String(msPart).padStart(3, '0')
   );
 }
 
