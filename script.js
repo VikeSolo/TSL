@@ -93,13 +93,31 @@ function isAdminUI(){
 
 // Admin bindings
 if(isAdminUI()){
-  document.getElementById('startBtn').addEventListener('click', ()=>{
-    timerRef.once('value').then(snap=>{
-      const data = snap.val() || { elapsed:0 };
-      timerRef.set({ running:true, startTime: Date.now(), elapsed: data.elapsed || 0 });
-    });
-  });
+ document.getElementById('startBtn').addEventListener('click', () => {
+  let countdown = 5;
 
+  // Show countdown on timer
+  if (timerDisplay) timerDisplay.innerText = `Starting in ${countdown}...`;
+
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      timerDisplay.innerText = `Starting in ${countdown}...`;
+    } else {
+      clearInterval(countdownInterval);
+
+      // Start real timer only after countdown finishes
+      timerRef.once("value").then(snap => {
+        const data = snap.val() || { elapsed: 0 };
+        timerRef.set({
+          running: true,
+          startTime: Date.now(),
+          elapsed: data.elapsed || 0
+        });
+      });
+    }
+  }, 1000);
+});
   document.getElementById('stopBtn').addEventListener('click', ()=>{
     timerRef.once('value').then(snap=>{
       const data = snap.val();
