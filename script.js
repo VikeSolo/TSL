@@ -4,8 +4,8 @@
 // Utility: format milliseconds to HH:MM:SS
 function formatMS(ms){
   const m = Math.floor(ms / 60000);               
-  const s = Math.floor((ms % 60000) / 1000);      
-  const msPart = ms % 10;                       
+  const s = Math.floor((ms % 60000) / 100);      
+  const msPart = ms % 100;                       
 
   return (
     String(m).padStart(2, '0') + ":" +
